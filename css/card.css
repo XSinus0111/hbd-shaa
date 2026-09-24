@@ -60,7 +60,7 @@
 
     transform: rotateY(180deg);
 
-    font-size: clamp(0.7rem, 1.8vw, 0.875rem);
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
     line-height: 1.45;
     text-align: center;
     box-shadow: var(--card-shadow);
