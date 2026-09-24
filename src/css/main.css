@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+
+:root {
+    /* color */
+    --netral-color: #fff9fc;
+    --primary-color: #f8c8dc;
+    --secondary-color: #f3b6c8;
+    --accent-color: #e98aaf;
+    --text-color: #493b47;
+
+    --muted-color: #8f7d88;
+    --paper-color: #fffdfb;
+
+    --shadow-color: #838383;
+
+    /* font */
+    --font-caveat: "Caveat", cursive;
+    --font-lora: "Lora", serif;
+
+    /* value var */
+    --card-shadow: 0 5px 8px var(--shadow-color);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#hero,
+#moments,
+#poems,
+#letter {
+    scroll-margin-top: 100px;
+}
+
+body {
+    overflow-x: clip;
+    background-color: var(--netral-color);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    background-color: var(--netral-color);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px 25px;
+}
+
+nav .logo {
+    font-family: var(--font-lora);
+    color: var(--text-color);
+}
+
+nav ul {
+    display: flex;
+    gap: 40px;
+
+    list-style: none;
+}
+
+nav a {
+    font-family: var(--font-lora);
+    color: var(--text-color);
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    display: flex;
+    justify-content: center;
+    padding-top: 75px;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero img {
+    width: 600px;
+    display: block;
+    box-shadow: 0 3px 10px var(--shadow-color);
+
+    animation: respons 0.8s ease;
+}
+
+@keyframes respons {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.btn-cta {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: var(--font-lora);
+    text-decoration: none;
+    color: var(--secondary-color);
+
+    padding: 5px 25px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: var(--secondary-color);
+    color: var(--netral-color);
+}
+
+.btn-cta:active {
+    background-color: var(--netral-color);
+    color: var(--primary-color);
+}
+
+/* =========================
+   MOMENTS SECTION
+========================= */
+
+.moments,
+.poems,
+.letters {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.moments h1,
+.poems h1,
+.letters h1 {
+    color: var(--accent-color);
+    font-family: var(--font-caveat);
+}
+
+.moments p,
+.poems p,
+.letters p {
+    color: var(--text-color);
+    font-family: var(--font-lora);
+}
+
+/* =========================
+   MOMENTS GRID
+========================= */
+
+.container {
+    width: 900px;
+    height: 750px;
+
+    display: grid;
+
+    grid-template-areas:
+        "item1 item2 item2 item3"
+        "item1 item4 item5 item5"
+        "item6 item4 item9 item7"
+        "item8 item8 item9 item7";
+
+    margin-top: 50px;
+    padding: 20px;
+
+    border: 5px solid #ffffff;
+    border-radius: 15px;
+
+    gap: 15px;
+}
+
+.item1 { grid-area: item1; }
+.item2 { grid-area: item2; }
+.item3 { grid-area: item3; }
+.item4 { grid-area: item4; }
+.item5 { grid-area: item5; }
+.item6 { grid-area: item6; }
+.item7 { grid-area: item7; }
+.item8 { grid-area: item8; }
+.item9 { grid-area: item9; }
+
+/* =========================
+   LETTER SECTION
+========================= */
+.letter-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 10px 0;
+}
+
+.love-letter {
+    display: block;
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px) scale(0.96);
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0s linear 0.5s;
+}
+
+.letter-stage.is-open .love-letter {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+
+    /* delay: tunggu amplop mulai bergeser */
+    transition:
+        opacity 0.6s ease 0.35s,
+        transform 0.6s ease 0.35s,
+        visibility 0s;
+}
+
+.letter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: 100% 100%;
+
+    transition:
+        left 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        top 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.letter img {
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.letter:hover img {
+    transform: translateY(-4px);
+}
+
+.letter-stage.is-open .letter {
+    left: calc(100% - 16px);
+    top: calc(100% - 16px);
+    transform: translate(-100%, -100%) scale(0.6);
+}
+
+/* Footer */
+footer {
+    background-color: var(--accent-color);
+    color: var(--netral-color);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+    .letter-stage.is-open .letter {
+        transform: translate(-100%, -100%) scale(0.45);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .love-letter,
+    .letter,
+    .letter img {
+        transition: none;
+    }
+}
+

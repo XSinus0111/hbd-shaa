@@ -1,0 +1,524 @@
+
+/* =========================================================
+   PHOTOBOOTH
+   ========================================================= */
+
+.photobooth-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--netral-color);
+    font-family: var(--font-lora);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.photobooth-section .hero-title {
+    margin: 0 0 6px;
+
+    font-family: var(--font-caveat);
+    font-size: 3.2rem;
+    font-weight: 700;
+
+    color: var(--accent-color);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.photobooth-section .hero-subtitle {
+    margin: 0 0 30px;
+
+    font-size: 0.95rem;
+    color: var(--muted-color);
+
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   WEBCAM
+   ========================================================= */
+
+.webcam-card {
+    width: 100%;
+    max-width: 380px;
+
+    background-color: var(--paper-color);
+
+    border: 1px solid var(--primary-color);
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow: var(--card-shadow);
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+}
+
+
+/* Window Header */
+
+.window-header {
+    width: 100%;
+
+    padding: 12px 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: var(--primary-color);
+
+    box-sizing: border-box;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+
+    display: block;
+
+    background-color: #ffffff;
+    border-radius: 50%;
+
+    opacity: 0.9;
+
+    flex-shrink: 0;
+}
+
+
+/* Webcam View */
+
+.webcam-viewport {
+    position: relative;
+
+    width: 100%;
+    height: 280px;
+
+    background-color: #f3f0f2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--font-caveat);
+    font-size: 6rem;
+    font-weight: 700;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(0, 0, 0, 0.35),
+        0 0 16px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 999;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.countdown-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   CAMERA FLASH
+========================================================= */
+
+.camera-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.12s ease;
+}
+
+.camera-flash.is-visible {
+    opacity: 1;
+}
+
+.camera-flash.active {
+    animation: cameraFlash 0.35s ease-out;
+}
+
+@keyframes cameraFlash {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   TAKE PHOTO BUTTON
+   ========================================================= */
+
+.btn-capture {
+    margin-top: 24px;
+
+    padding: 8px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: none;
+    border-radius: 20px;
+
+    background-color: var(--accent-color);
+    color: #ffffff;
+
+    font-family: var(--font-caveat);
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.btn-capture:hover {
+    background-color: var(--netral-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.btn-capture:active {
+    transform: translateY(0);
+}
+
+.btn-capture:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.photobooth-status {
+    min-height: 20px;
+
+    margin: 10px 0 0;
+
+    font-size: 0.8rem;
+
+    color: var(--muted-color);
+
+    text-align: center;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   DISPENSER
+   ========================================================= */
+
+.photobooth-dispenser {
+    width: 100%;
+
+    margin-top: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* Slot */
+
+.dispenser-slot {
+    width: 100%;
+    max-width: 400px;
+    height: 22px;
+
+    background-color: #5c555a;
+
+    border-radius: 12px;
+
+    box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.4),
+        var(--card-shadow);
+
+    position: relative;
+    z-index: 2;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DOWNLOAD
+   ========================================================= */
+
+.download-action-container {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 15px;
+
+    position: relative;
+    z-index: 3;
+}
+
+.btn-download {
+    padding: 8px 20px;
+    margin-top: -15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border: none;
+    border-radius: 0 0 20px 20px;
+
+    background-color: var(--accent-color);
+    color: #ffffff;
+
+    font-family: var(--font-caveat);
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    box-shadow: var(--card-shadow);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.btn-download:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+.btn-download:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   PHOTOSTRIP
+   ========================================================= */
+
+/*
+   PENTING:
+   Tidak ada ruang kosong sebelum hasil foto muncul.
+*/
+
+.photostrip-wrapper {
+    display: none;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/*
+   JavaScript bisa menambahkan class "has-result"
+   ke wrapper setelah foto selesai dibuat.
+*/
+
+.photostrip-wrapper.has-result {
+    display: flex;
+}
+
+
+/* Photostrip Card */
+
+.photostrip-card {
+    position: relative;
+
+    width: 290px;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--paper-color);
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--card-shadow);
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    transform: translateY(-100%);
+    transition:
+        transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+/* Eject */
+
+.photostrip-card.eject-animation {
+    transform: translateY(0);
+}
+
+
+/* Canvas */
+
+#resultCanvas {
+    width: 100%;
+    height: auto;
+
+    display: block;
+    /* border-radius: 19px; */
+}
+
+
+/* =========================================================
+   HIDDEN LEGACY ELEMENT
+   ========================================================= */
+
+.photostrip-wrapper [hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .photobooth-section {
+        padding: 0 15px;
+    }
+
+    .photobooth-section .hero-title {
+        font-size: 2.7rem;
+    }
+
+    .photobooth-section .hero-subtitle {
+        max-width: 320px;
+        font-size: 0.88rem;
+    }
+
+    .webcam-card {
+        max-width: 100%;
+    }
+
+    .webcam-viewport {
+        height: 250px;
+    }
+
+    .countdown-overlay {
+        font-size: 4rem;
+    }
+
+    .btn-capture {
+        padding: 11px 24px;
+        font-size: 1.25rem;
+    }
+
+    .photostrip-card {
+        width: 280px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .photobooth-section {
+        padding: 0 12px;
+    }
+
+    .photobooth-section .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .webcam-viewport {
+        height: 220px;
+    }
+
+    .photostrip-card {
+        width: 260px;
+    }
+}

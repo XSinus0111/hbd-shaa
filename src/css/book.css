@@ -1,0 +1,438 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+
+/* =========================================
+   VARIABLES (khusus poems book)
+========================================= */
+
+.poems-book-scene {
+    --pb-background: #f7e8ee;
+    --pb-paper: #fffdfb;
+    --pb-primary: #f8c8dc;
+    --pb-secondary: #f3b6c8;
+    --pb-accent: #e98aaf;
+    --pb-text: #493b47;
+    --pb-muted: #8f7d88;
+
+    --pb-font-title: "Caveat", cursive;
+    --pb-font-script: "Allura", cursive;
+    --pb-font-body: "Lora", serif;
+}
+
+/* =========================================
+   SCENE WRAPPER
+========================================= */
+
+.poems-book-scene {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 30px;
+}
+
+/* =========================================
+   BOOK WRAPPER
+========================================= */
+
+.poems-book-scene .book-wrapper {
+    width: 800px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    filter: drop-shadow(0 20px 25px rgba(73, 59, 71, 0.2));
+    transition:
+        width 0.5s ease,
+        transform 0.5s ease;
+}
+
+.poems-book-scene .book-wrapper.closed {
+    width: 400px;
+    transform: translateX(0) rotate(0deg);
+}
+
+.poems-book-scene .book-wrapper.open {
+    width: 800px;
+}
+
+.poems-book-scene .book-wrapper.open.left {
+    transform: translateX(-10px) rotate(-0.25deg);
+}
+
+.poems-book-scene .book-wrapper.open.right {
+    transform: translateX(10px) rotate(0.25deg);
+}
+
+.poems-book-scene .book-wrapper.open.center {
+    transform: translateX(0) rotate(0deg);
+}
+
+/* =========================================
+   BOOK
+========================================= */
+
+.poems-book-scene #book {
+    width: 800px;
+
+    height: 520px;
+
+    position: relative;
+}
+
+/* =========================================
+   PAGE
+========================================= */
+
+.poems-book-scene .page {
+    background-color: var(--pb-paper);
+    color: var(--pb-text);
+    border: 1px solid rgba(73, 59, 71, 0.08);
+    overflow: hidden;
+}
+
+.poems-book-scene .page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.035),
+        transparent 10%,
+        transparent 90%,
+        rgba(0, 0, 0, 0.025)
+    );
+}
+
+/* =========================================
+   COVER (belakang)
+========================================= */
+
+.poems-book-scene .cover {
+    background: linear-gradient(135deg, #f8c8dc, #f3b6c8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poems-book-scene .cover-content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.poems-book-scene .small-title {
+    font-family: var(--pb-font-body);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.poems-book-scene .cover h1 {
+    font-family: var(--pb-font-title);
+    font-size: 70px;
+    line-height: 0.85;
+    font-weight: 600;
+}
+
+.poems-book-scene .heart {
+    font-family: var(--pb-font-script);
+    font-size: 70px;
+    line-height: 1;
+}
+
+.poems-book-scene .hint {
+    margin-top: 20px;
+    font-family: var(--pb-font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+/* =========================================
+   FRONT COVER (full-bleed image, no whitespace)
+========================================= */
+
+.poems-book-scene .cover.front-cover {
+    padding: 0;
+    margin: 0;
+    background: none;
+    display: block;
+    border: none;
+}
+
+.poems-book-scene .cover.front-cover::after {
+    display: none;
+}
+
+.poems-book-scene .cover-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 102%;
+    height: 102%;
+
+    transform: translate(-50%, -50%);
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.poems-book-scene .page-content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    text-align: center;
+}
+
+.poems-book-scene .page-number {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    color: var(--pb-muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.poems-book-scene .page h2 {
+    color: var(--pb-accent);
+    font-family: var(--pb-font-title);
+    font-size: 42px;
+    line-height: 1;
+}
+
+.poems-book-scene .page p {
+    max-width: 430px;
+
+    color: var(--pb-text);
+    font-family: var(--pb-font-body);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.poems-book-scene .photo {
+    width: 70%;
+    height: 270px;
+
+    overflow: hidden;
+    background: #eee;
+    border: 7px solid white;
+    box-shadow: 0 5px 15px rgba(73, 59, 71, 0.15);
+    transform: rotate(-1deg);
+}
+
+.poems-book-scene .photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+}
+
+/* =========================================
+   QUOTE
+========================================= */
+
+.poems-book-scene .quote {
+    max-width: 400px;
+    color: var(--pb-accent);
+    font-family: var(--pb-font-title);
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.poems-book-scene .divider {
+    width: 80px;
+    height: 1px;
+    margin: 10px 0;
+    background: var(--pb-secondary);
+}
+
+/* =========================================
+   BACK COVER
+========================================= */
+
+.poems-book-scene .back-cover {
+    background: linear-gradient(135deg, #f3b6c8, #e98aaf);
+}
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.poems-book-scene .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.poems-book-scene .controls button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--pb-secondary);
+    border-radius: 50%;
+    background: white;
+    color: var(--pb-text);
+    font-size: 20px;
+
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.poems-book-scene .controls button:hover {
+    background-color: var(--pb-primary);
+    transform: scale(1.08);
+}
+
+.poems-book-scene .controls button:active {
+    transform: scale(0.95);
+}
+
+.poems-book-scene #page-counter {
+    min-width: 60px;
+    color: var(--pb-muted);
+    font-family: var(--pb-font-body);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* =========================================
+   POEM RULE
+========================================= */
+.poems-book-scene .page .poem {
+    width: 100%;
+    max-width: 340px;
+    text-align: left;
+}
+
+.poems-book-scene .page .poem h2 {
+    margin: 0 0 14px;
+}
+
+.poems-book-scene .page .poem p.content {
+    margin: 0 0 14px; /* jarak antar bait */
+    font-size: 13px;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+/* Titimangsa: kecil, Lora, warna redup */
+.poems-book-scene .page .poem p.date {
+    margin: 50px 0 0;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    font-style: normal;
+    color: var(--pb-muted);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+    .poems-book-scene .book-wrapper {
+        transform: scale(0.85);
+    }
+
+    .poems-book-scene .book-wrapper.closed {
+        transform: scale(0.85);
+    }
+
+    .poems-book-scene .book-wrapper.open.left {
+        transform: translateX(-5px) rotate(-0.2deg) scale(0.85);
+    }
+
+    .poems-book-scene .book-wrapper.open.right {
+        transform: translateX(5px) rotate(0.2deg) scale(0.85);
+    }
+}
+
+@media (max-width: 700px) {
+    .poems-book-scene {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .poems-book-scene .book-wrapper {
+        width: 350px;
+
+        height: 480px;
+
+        transform: scale(0.9);
+    }
+
+    .poems-book-scene .book-wrapper.closed {
+        width: 350px;
+        transform: scale(0.9);
+    }
+
+    .poems-book-scene .book-wrapper.open {
+        width: 350px;
+        transform: scale(0.9);
+    }
+
+    .poems-book-scene .book-wrapper.open.left {
+        transform: translateX(-3px) rotate(-0.15deg) scale(0.9);
+    }
+
+    .poems-book-scene .book-wrapper.open.right {
+        transform: translateX(3px) rotate(0.15deg) scale(0.9);
+    }
+
+    .poems-book-scene #book {
+        width: 350px;
+        height: 480px;
+    }
+
+    .poems-book-scene .page-content {
+        padding: 30px;
+    }
+
+    .poems-book-scene .cover h1 {
+        font-size: 55px;
+    }
+
+    .poems-book-scene .page h2 {
+        font-size: 34px;
+    }
+
+    .poems-book-scene .photo {
+        width: 85%;
+        height: 220px;
+    }
+}
+
