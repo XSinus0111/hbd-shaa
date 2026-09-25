@@ -38,7 +38,7 @@
 ========================================= */
 
 .poems-book-scene .book-wrapper {
-    width: 800px;
+    width: min(800px, calc(100vw - 48px));
     height: 520px;
     display: flex;
     justify-content: center;
@@ -51,12 +51,12 @@
 }
 
 .poems-book-scene .book-wrapper.closed {
-    width: 400px;
+    width: min(400px, calc(100vw - 48px));
     transform: translateX(0) rotate(0deg);
 }
 
 .poems-book-scene .book-wrapper.open {
-    width: 800px;
+    width: min(800px, calc(100vw - 48px));
 }
 
 .poems-book-scene .book-wrapper.open.left {
@@ -76,9 +76,8 @@
 ========================================= */
 
 .poems-book-scene #book {
-    width: 800px;
-
-    height: 520px;
+    width: 100%;
+    height: 100%;
 
     position: relative;
 }
@@ -364,20 +363,12 @@
 ========================================= */
 
 @media (max-width: 850px) {
-    .poems-book-scene .book-wrapper {
-        transform: scale(0.85);
-    }
-
-    .poems-book-scene .book-wrapper.closed {
-        transform: scale(0.85);
-    }
-
     .poems-book-scene .book-wrapper.open.left {
-        transform: translateX(-5px) rotate(-0.2deg) scale(0.85);
+        transform: translateX(-5px) rotate(-0.2deg);
     }
 
     .poems-book-scene .book-wrapper.open.right {
-        transform: translateX(5px) rotate(0.2deg) scale(0.85);
+        transform: translateX(5px) rotate(0.2deg);
     }
 }
 
@@ -388,34 +379,25 @@
     }
 
     .poems-book-scene .book-wrapper {
-        width: 350px;
-
-        height: 480px;
-
-        transform: scale(0.9);
+        width: min(400px, calc(100vw - 48px));
+        height: min(520px, calc(100vw * 1.3));
+        min-height: 390px;
     }
 
     .poems-book-scene .book-wrapper.closed {
-        width: 350px;
-        transform: scale(0.9);
+        width: min(400px, calc(100vw - 48px));
     }
 
     .poems-book-scene .book-wrapper.open {
-        width: 350px;
-        transform: scale(0.9);
+        width: min(400px, calc(100vw - 48px));
     }
 
     .poems-book-scene .book-wrapper.open.left {
-        transform: translateX(-3px) rotate(-0.15deg) scale(0.9);
+        transform: translateX(-3px) rotate(-0.15deg);
     }
 
     .poems-book-scene .book-wrapper.open.right {
-        transform: translateX(3px) rotate(0.15deg) scale(0.9);
-    }
-
-    .poems-book-scene #book {
-        width: 350px;
-        height: 480px;
+        transform: translateX(3px) rotate(0.15deg);
     }
 
     .poems-book-scene .page-content {

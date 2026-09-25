@@ -49,6 +49,7 @@ html {
 body {
     overflow-x: clip;
     background-color: var(--netral-color);
+    min-width: 0;
 }
 
 header {
@@ -69,6 +70,10 @@ nav {
 nav .logo {
     font-family: var(--font-lora);
     color: var(--text-color);
+}
+
+.nav-toggle {
+    display: none;
 }
 
 nav ul {
@@ -95,17 +100,21 @@ nav a:hover {
 ========================= */
 
 .hero {
+    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 75px;
+    padding: 75px 20px 0;
 }
 
 .hero-image {
     position: relative;
+    width: min(600px, 100%);
+    margin-inline: auto;
 }
 
 .hero img {
-    width: 600px;
+    width: 100%;
     display: block;
     box-shadow: 0 3px 10px var(--shadow-color);
 
@@ -184,8 +193,8 @@ nav a:hover {
 ========================= */
 
 .container {
-    width: 900px;
-    height: 750px;
+    width: min(900px, calc(100% - 32px));
+    aspect-ratio: 6 / 5;
 
     display: grid;
 
@@ -296,6 +305,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 20px;
+    text-align: center;
 }
 
 
@@ -305,8 +315,217 @@ footer {
 ========================================= */
 
 @media (max-width: 700px) {
+    html,
+    body {
+        scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    #hero,
+    #moments,
+    #poems,
+    #letter {
+        scroll-margin-top: 128px;
+    }
+
+    nav {
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+    }
+
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        padding: 8px 16px 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background-color: var(--netral-color);
+        box-shadow: 0 8px 10px rgba(73, 59, 71, 0.18);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+    }
+
+    nav ul.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    nav a {
+        display: block;
+        padding: 11px 4px;
+        text-align: center;
+        border-bottom: 1px solid rgba(233, 138, 175, 0.2);
+    }
+
+    nav li:last-child a {
+        border-bottom: 0;
+    }
+
+    .nav-toggle {
+        width: 42px;
+        height: 38px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        border: 1px solid var(--secondary-color);
+        border-radius: 8px;
+        background: var(--netral-color);
+        cursor: pointer;
+    }
+
+    .nav-toggle span {
+        width: 19px;
+        height: 2px;
+        display: block;
+        border-radius: 99px;
+        background-color: var(--text-color);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    nav .logo {
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        padding: 40px 16px 0;
+    }
+
+    .btn-cta {
+        padding: 4px 16px;
+        font-size: clamp(0.7rem, 3vw, 1rem);
+    }
+
+    .moments,
+    .poems,
+    .letters {
+        width: 100%;
+        margin-top: 40px;
+        padding-inline: 16px;
+        text-align: center;
+    }
+
+    .moments h1,
+    .poems h1,
+    .letters h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1;
+    }
+
+    .moments > p,
+    .poems > p,
+    .letters > p {
+        max-width: 34rem;
+        margin-top: 8px;
+        font-size: clamp(0.82rem, 3.5vw, 1rem);
+        line-height: 1.55;
+    }
+
+    .container {
+        margin-top: 28px;
+        padding: 12px;
+        gap: 10px;
+    }
+
     .letter-stage.is-open .letter {
         transform: translate(-100%, -100%) scale(0.45);
+    }
+}
+
+@media (max-width: 560px) {
+    .container {
+        width: min(430px, calc(100% - 24px));
+        height: auto;
+        min-height: 0;
+        aspect-ratio: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "item1 item2"
+            "item3 item4"
+            "item5 item6"
+            "item7 item8"
+            "item9 item9";
+        grid-auto-rows: clamp(7.5rem, 38vw, 10rem);
+        padding: 10px;
+        gap: 9px;
+        border-width: 3px;
+    }
+
+    .container .card-back {
+        font-size: clamp(0.62rem, 3vw, 0.78rem);
+        line-height: 1.35;
+    }
+
+    .letter-stage {
+        width: min(85%, 320px);
+        margin-top: 4px;
+    }
+
+    .letter {
+        width: min(230px, 74vw);
+    }
+
+    .letter img {
+        width: 100%;
+        height: auto;
+    }
+
+    .letter-stage.is-open .letter {
+        left: calc(100% - 8px);
+        top: calc(100% - 8px);
+        transform: translate(-100%, -100%) scale(0.34);
+    }
+
+    footer {
+        padding: 16px;
+        font-size: 0.78rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 360px) {
+    nav ul {
+        gap: 6px 14px;
+    }
+
+    .container {
+        grid-auto-rows: 7rem;
+        padding: 8px;
+        gap: 7px;
+    }
+
+    .letter {
+        width: min(210px, 72vw);
     }
 }
 

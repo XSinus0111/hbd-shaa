@@ -1,18 +1,18 @@
 const flipBookOptions = {
     width: 400,
     height: 520,
-    size: "fixed",
-    minWidth: 400,
+    size: "stretch",
+    minWidth: 280,
     maxWidth: 400,
-    minHeight: 520,
+    minHeight: 390,
     maxHeight: 520,
     showCover: true,
-    usePortrait: false,
+    usePortrait: true,
     drawShadow: true,
     maxShadowOpacity: 0.2,
     flippingTime: 900,
     startPage: 0,
-    autoSize: false,
+    autoSize: true,
     useMouseEvents: true,
     mobileScrollSupport: true,
     swipeDistance: 30,
@@ -30,12 +30,14 @@ function initNavigation() {
 
     const closeMenu = () => {
         toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Buka menu navigasi");
         menu.classList.remove("is-open");
     };
 
     toggle.addEventListener("click", () => {
         const isOpen = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", String(!isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Buka menu navigasi" : "Tutup menu navigasi");
         menu.classList.toggle("is-open", !isOpen);
     });
 
